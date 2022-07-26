@@ -33,22 +33,27 @@ class App extends React.Component {
         )
 
     }
-
-
-
-    render() {
-       if (this.state.errorMessage && (!this.state.lat || !this.state.long)) {
+renderContent() {
+    if (this.state.errorMessage && (!this.state.lat || !this.state.long)) {
         return <div>Error: {this.state.errorMessage}</div>
        }
        if ((this.state.lat || this.state.long) && !this.state.errorMessage) {
         return(
               <div>
-                <SeasonDisplay lat={this.state.lat} />
+                <SeasonDisplay  lat={this.state.lat} />
               </div>
         )
         
        }
-       return <div><Loading /></div>
+       return <div><Loading message='Please accept location request' /></div>
+}
+
+    render() {
+       return(
+        <div className="border red">
+            {this.renderContent()}
+        </div>
+       )
     } 
 }
 
